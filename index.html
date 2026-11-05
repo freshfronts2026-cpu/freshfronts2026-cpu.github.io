@@ -1,0 +1,298 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Freshfront</title>
+<meta name="description" content="Freshfront builds fast, mobile-first websites for local service businesses. See a free redesign of your homepage before you pay anything.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap">
+<style>
+/* Layout: a working contractor's quote sheet. Left-aligned bands, a single "audit card" hero, priced line items, plain policies. */
+:root{
+  --paper:#F6F7F4; --surface:#FFFFFF; --ink:#15202A; --muted:#55626D; --line:#D9DED8;
+  --accent:#D9480F; --accent-ink:#FFFFFF; --good:#2B7A4B; --bad:#B42318; --tint:#FDEDE4;
+  --display:"Bricolage Grotesque", "Arial Narrow", system-ui, sans-serif;
+  --body:"Public Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
+  --mono:"IBM Plex Mono", ui-monospace, "SFMono-Regular", Menlo, monospace;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --paper:#10171D; --surface:#17212A; --ink:#ECEFEA; --muted:#9AA6AE; --line:#2A3641;
+  --accent:#FF7A3D; --accent-ink:#1A0E06; --good:#5CC48A; --bad:#FF7B6E; --tint:#2A1C14; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --paper:#10171D; --surface:#17212A; --ink:#ECEFEA; --muted:#9AA6AE; --line:#2A3641;
+  --accent:#FF7A3D; --accent-ink:#1A0E06; --good:#5CC48A; --bad:#FF7B6E; --tint:#2A1C14; color-scheme:dark}
+
+*{box-sizing:border-box}
+body{background:var(--paper);color:var(--ink);font:400 17px/1.6 var(--body)}
+.wrap{max-width:1080px;margin:0 auto;padding-left:max(16px, env(safe-area-inset-left, 0px));padding-right:max(16px, env(safe-area-inset-right, 0px))}
+h1,h2,h3{font-family:var(--display);line-height:1.08;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.3rem,5.6vw,4.1rem);font-weight:800;letter-spacing:-.02em}
+h2{font-size:clamp(1.7rem,3.4vw,2.5rem);font-weight:700;letter-spacing:-.01em}
+h3{font-size:1.2rem;font-weight:700}
+p{margin:0;max-width:62ch}
+a{color:inherit}
+.eyebrow{font:500 .78rem/1 var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--muted)}
+.btn{display:inline-flex;align-items:center;gap:.5em;background:var(--accent);color:var(--accent-ink);font:600 1rem/1 var(--body);padding:.95em 1.3em;border-radius:6px;text-decoration:none;border:0;cursor:pointer}
+.btn:hover{filter:brightness(1.07)}
+.btn.ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 1.5px var(--line)}
+:focus-visible{outline:3px solid var(--accent);outline-offset:2px}
+section{padding-block:clamp(56px,8vw,96px);border-top:1px solid var(--line)}
+
+/* header */
+header{padding-block:20px}
+.bar{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.logo{font:800 1.35rem/1 var(--display);letter-spacing:-.02em;display:flex;align-items:center;gap:.45em;text-decoration:none}
+.logo i{width:.75em;height:.75em;background:var(--accent);border-radius:2px;transform:rotate(45deg);display:inline-block}
+nav{display:flex;gap:22px;flex-wrap:wrap;font-size:.95rem}
+nav a{text-decoration:none;color:var(--muted)} nav a:hover{color:var(--ink)}
+
+/* hero */
+.hero{display:grid;grid-template-columns:1.15fr .85fr;gap:clamp(28px,5vw,64px);align-items:center;padding-block:clamp(32px,6vw,72px) clamp(56px,8vw,96px)}
+.hero > *{min-width:0}
+.hero p.lede{font-size:1.15rem;color:var(--muted);margin-top:20px}
+.hero .ctas{display:flex;gap:12px;flex-wrap:wrap;margin-top:28px}
+.fine{font-size:.88rem;color:var(--muted);margin-top:14px}
+
+.audit{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:22px;box-shadow:0 18px 40px -24px rgba(20,32,42,.35)}
+.audit-head{display:flex;justify-content:space-between;align-items:baseline;gap:12px;margin-bottom:14px}
+.audit-head strong{font:700 1.05rem/1.2 var(--display)}
+.audit table{width:100%;border-collapse:collapse;font-size:.92rem}
+.audit th{font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted);text-align:left;padding:0 0 8px}
+.audit td{padding:10px 0;border-top:1px solid var(--line);vertical-align:top}
+.audit td.v{font-family:var(--mono);font-variant-numeric:tabular-nums;white-space:nowrap;padding-left:10px;text-align:right}
+.bad{color:var(--bad)} .good{color:var(--good)}
+.score{display:flex;gap:12px;margin-top:16px}
+.score div{flex:1;background:var(--paper);border-radius:8px;padding:12px;text-align:center}
+.score b{display:block;font:800 1.9rem/1 var(--display)}
+.score span{font:500 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--muted)}
+.example{font-size:.78rem;color:var(--muted);margin-top:12px}
+
+/* steps */
+.steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:24px;margin-top:40px}
+.step{display:grid;gap:10px;align-content:start}
+.step .n{font:500 .85rem/1 var(--mono);color:var(--accent)}
+.step p{color:var(--muted)}
+
+/* who */
+.trades{display:flex;flex-wrap:wrap;gap:10px;margin-top:28px;padding:0;list-style:none}
+.trades li{border:1.5px solid var(--line);border-radius:999px;padding:.45em 1em;font-size:.95rem}
+
+/* pricing */
+.prices{margin-top:36px;border:1px solid var(--line);border-radius:10px;background:var(--surface);overflow:hidden}
+.row{display:grid;grid-template-columns:1fr auto;gap:8px 24px;padding:22px 24px;border-top:1px solid var(--line);align-items:start}
+.row:first-child{border-top:0}
+.row > div{min-width:0}
+.row h3{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.tag{font:500 .7rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--tint);color:var(--accent);padding:.4em .6em;border-radius:4px}
+.row p{color:var(--muted);margin-top:6px;font-size:.96rem}
+.price{font:500 1.25rem/1.2 var(--mono);font-variant-numeric:tabular-nums;text-align:right;white-space:nowrap}
+.price small{display:block;font-size:.75rem;color:var(--muted)}
+.note{font-size:.9rem;color:var(--muted);margin-top:16px}
+
+/* faq + policies */
+.cols{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px 48px;margin-top:32px}
+details{border-top:1px solid var(--line);padding-block:16px}
+summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:12px}
+summary::after{content:"+";font-family:var(--mono);color:var(--accent)}
+details[open] summary::after{content:"–"}
+details p{color:var(--muted);margin-top:10px;font-size:.96rem}
+.policy h3{margin-bottom:8px}
+.policy p{color:var(--muted);font-size:.95rem}
+.policy p + p{margin-top:8px}
+
+/* contact */
+.contact{background:var(--ink);color:var(--paper);border-top:0}
+.contact .eyebrow{color:color-mix(in srgb, var(--paper) 65%, transparent)}
+.contact-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:start}
+.contact-grid > *{min-width:0}
+.contact p{color:color-mix(in srgb, var(--paper) 75%, transparent);margin-top:16px}
+.emailbox{background:color-mix(in srgb, var(--paper) 8%, transparent);border:1px solid color-mix(in srgb, var(--paper) 18%, transparent);border-radius:10px;padding:22px}
+.emailbox ol{margin:0;padding-left:1.2em;display:grid;gap:8px;color:color-mix(in srgb, var(--paper) 80%, transparent)}
+.addr{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-top:18px}
+.addr code{font:500 1rem/1.4 var(--mono);user-select:all;word-break:break-all}
+.copy{background:var(--accent);color:var(--accent-ink);border:0;border-radius:6px;padding:.55em .9em;font:600 .9rem/1 var(--body);cursor:pointer}
+footer{padding-block:28px;font-size:.88rem;color:var(--muted)}
+footer .bar{gap:12px}
+
+@media (max-width:820px){
+  .hero,.contact-grid{grid-template-columns:1fr}
+  .steps{grid-template-columns:1fr}
+  .cols{grid-template-columns:1fr}
+}
+@media (max-width:480px){
+  .row{grid-template-columns:1fr}
+  .price{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important;animation:none!important}}
+</style>
+
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)} body{margin:0} img{max-width:100%}</style>
+</head>
+<body>
+<header class="wrap">
+  <div class="bar">
+    <a class="logo" href="#top"><i></i>Freshfront</a>
+    <nav>
+      <a href="#how">How it works</a>
+      <a href="#pricing">Pricing</a>
+      <a href="#faq">FAQ</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">Websites for local service businesses</p>
+      <h1 style="margin-top:14px">See your new website before you pay a cent.</h1>
+      <p class="lede">We rebuild your homepage for free, on your real business details, and send you the live link. If you like it, we finish the site in 7 days. If you don't, you owe nothing.</p>
+      <div class="ctas">
+        <a class="btn" href="#contact">Get my free preview</a>
+        <a class="btn ghost" href="#pricing">See pricing</a>
+      </div>
+      <p class="fine">Built for roofers, landscapers, painters, cleaners, auto shops, pest control and contractors.</p>
+    </div>
+
+    <aside class="audit" aria-label="Example homepage audit">
+      <div class="audit-head">
+        <strong>Homepage audit</strong>
+        <span class="eyebrow">Before → After</span>
+      </div>
+      <table>
+        <thead><tr><th>Check</th><th style="text-align:right">Before</th><th style="text-align:right">After</th></tr></thead>
+        <tbody>
+          <tr><td>Load time on a phone</td><td class="v bad">6.8 s</td><td class="v good">1.3 s</td></tr>
+          <tr><td>Tap-to-call above the fold</td><td class="v bad">No</td><td class="v good">Yes</td></tr>
+          <tr><td>Quote request form</td><td class="v bad">Buried</td><td class="v good">1 tap</td></tr>
+          <tr><td>Service area listed</td><td class="v bad">No</td><td class="v good">Yes</td></tr>
+          <tr><td>Readable without zooming</td><td class="v bad">No</td><td class="v good">Yes</td></tr>
+        </tbody>
+      </table>
+      <div class="score">
+        <div><b class="bad">38</b><span>Mobile score</span></div>
+        <div><b class="good">94</b><span>After rebuild</span></div>
+      </div>
+      <p class="example">Illustrative example of what a free preview audit covers.</p>
+    </aside>
+  </div>
+
+  <section id="how">
+    <div class="wrap">
+      <p class="eyebrow">How it works</p>
+      <h2 style="margin-top:12px">Three steps, no sales pitch.</h2>
+      <div class="steps">
+        <div class="step"><span class="n">Step 1</span><h3>We rebuild your homepage</h3><p>Send your current website. Within 24 hours you get a redesigned homepage at a live link, built with your name, services, service area and phone number.</p></div>
+        <div class="step"><span class="n">Step 2</span><h3>You decide</h3><p>Look at it on your phone. Book a 15-minute call if you want changes or questions answered. No obligation to buy.</p></div>
+        <div class="step"><span class="n">Step 3</span><h3>We launch in 7 days</h3><p>We finish the remaining pages, connect your domain, set up your quote form and Google Business Profile, and go live.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <p class="eyebrow">Who we work with</p>
+      <h2 style="margin-top:12px">Businesses whose customers find them on a phone.</h2>
+      <p style="margin-top:16px;color:var(--muted)">Most people searching for a local service are standing in their driveway or kitchen. If your site is slow, hard to read, or hides your number, they call the next result. We build for that moment.</p>
+      <ul class="trades">
+        <li>Roofing</li><li>Landscaping</li><li>Painting</li><li>Cleaning</li><li>Auto repair</li><li>Pest control</li><li>General contracting</li><li>Fencing &amp; decks</li><li>Pressure washing</li>
+      </ul>
+    </div>
+  </section>
+
+  <section id="pricing">
+    <div class="wrap">
+      <p class="eyebrow">Pricing (USD)</p>
+      <h2 style="margin-top:12px">Flat prices. No surprise invoices.</h2>
+      <div class="prices">
+        <div class="row"><div><h3>Homepage preview <span class="tag">Free</span></h3><p>A redesigned homepage built on your real details, delivered at a live link within 24 hours.</p></div><div class="price">$0</div></div>
+        <div class="row"><div><h3>Starter Site</h3><p>Up to 5 pages, mobile-first design, contact form, on-page SEO basics, launch on your domain. Delivered in 7 days with 2 revision rounds.</p></div><div class="price">$750<small>one-time</small></div></div>
+        <div class="row"><div><h3>Growth Site <span class="tag">Most chosen</span></h3><p>Everything in Starter, plus a quote or booking form, local SEO setup and a Google Business Profile cleanup. Delivered in 10 days.</p></div><div class="price">$1,500<small>one-time</small></div></div>
+        <div class="row"><div><h3>Care Plan</h3><p>Hosting, small edits whenever you need them, security updates and a monthly traffic report.</p></div><div class="price">$99<small>per month</small></div></div>
+        <div class="row"><div><h3>Growth Plan</h3><p>Care Plan plus two local SEO articles a month and automated review requests to your customers.</p></div><div class="price">$249<small>per month</small></div></div>
+        <div class="row"><div><h3>Site on subscription</h3><p>Starter Site plus Care Plan with nothing up front. 12-month term.</p></div><div class="price">$149<small>per month</small></div></div>
+      </div>
+      <p class="note">Canadian clients pay the same amounts in CAD. Applicable sales tax is added at checkout.</p>
+    </div>
+  </section>
+
+  <section id="faq">
+    <div class="wrap">
+      <p class="eyebrow">Questions</p>
+      <h2 style="margin-top:12px">What people usually ask.</h2>
+      <div class="cols">
+        <div>
+          <details><summary>Is the preview really free?</summary><p>Yes. We build it before you pay anything. If you don't want it, we delete it and you owe nothing.</p></details>
+          <details><summary>Do I keep my domain?</summary><p>Yes. Your domain stays in your name. We connect the new site to it and can move it to your own hosting any time.</p></details>
+          <details><summary>What do you need from me?</summary><p>Your current website or Google listing, your logo if you have one, and a few photos of your work. We write the copy for you to approve.</p></details>
+        </div>
+        <div>
+          <details><summary>Can I cancel a monthly plan?</summary><p>Care and Growth Plans are month to month; cancel with 30 days' notice. The subscription option has a 12-month term.</p></details>
+          <details><summary>Who owns the site after launch?</summary><p>On one-time packages, you own the finished site and its content once paid in full.</p></details>
+          <details><summary>How do payments work?</summary><p>We send an invoice you can pay by card online. Setup fees are due at launch; monthly plans bill on the same date each month.</p></details>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="policies">
+    <div class="wrap">
+      <p class="eyebrow">Policies</p>
+      <h2 style="margin-top:12px">Terms, refunds and privacy.</h2>
+      <div class="cols">
+        <div class="policy">
+          <h3>Refunds</h3>
+          <p>If we haven't delivered your site, you can cancel for a full refund of anything you've paid. After launch, one-time fees are non-refundable, but we fix anything that doesn't match the agreed scope at no cost.</p>
+          <p>Monthly plans can be cancelled with 30 days' notice; the current month is not refunded.</p>
+        </div>
+        <div class="policy">
+          <h3>Privacy</h3>
+          <p>We use the details you send us only to build and run your website and to contact you about it. We never sell your information.</p>
+          <p>Every email we send includes a way to opt out, and we honour it right away.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="contact">
+    <div class="wrap contact-grid">
+      <div>
+        <p class="eyebrow">Free homepage preview</p>
+        <h2 style="margin-top:12px">Send us your website. We'll send back a better one.</h2>
+        <p>Email the address below with your business name and current website, or just your Google listing if you don't have a site yet. You'll get a live preview link within one business day.</p>
+      </div>
+      <div class="emailbox">
+        <ol>
+          <li>Your business name</li>
+          <li>Your current website or Google listing</li>
+          <li>The services and area you cover</li>
+        </ol>
+        <div class="addr">
+          <code id="email">freshfronts2026@gmail.com</code>
+          <button class="copy" id="copyBtn" type="button">Copy email</button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="wrap">
+  <div class="bar">
+    <span>© 2026 Freshfront. Websites for local service businesses.</span>
+    <span>Ontario, Canada</span>
+  </div>
+</footer>
+
+<script>
+document.getElementById('copyBtn').addEventListener('click', function(){
+  var el=document.getElementById('email'), btn=this, txt=el.textContent.trim();
+  function done(){btn.textContent='Copied'; setTimeout(function(){btn.textContent='Copy email'},1600)}
+  function fallback(){var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Selected'}
+  try{navigator.clipboard.writeText(txt).then(done,fallback)}catch(e){fallback()}
+});
+</script>
+
+</body>
+</html>
